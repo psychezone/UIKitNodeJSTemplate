@@ -1,0 +1,20 @@
+<% layout('layout') -%>
+<% stylesheet('/stylesheets/addons/uikit.addons.min.css') -%>
+<% stylesheet('/stylesheets/search.css') -%>
+<% script('/javascripts/addons/autocomplete.min.js') -%>
+
+<div class="uk-autocomplete uk-form" data-uk-autocomplete="{source:'/search', minLength:3, delay:300}">
+    <input id="search" type="text" placeholder="Type here to search (3 letters or more)" class="uk-form-large uk-form-width-large" />
+    <script type="text/autocomplete">
+        <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
+            {{~items}}
+            <li data-value="{{ $item.data.title }}">
+                <a href="http://www.reddit.com{{ $item.data.permalink }}">
+                    {{ $item.data.title }}
+                    <div>{{{ $item.data.subreddit }}}</div>
+                </a>
+            </li>
+            {{/items}}
+        </ul>
+    </script>
+</div>
